@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Will You Be My Valentine?</title>
+    <style>
+        /* Reset default margins and set background */
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to right, #ff9a9e, #fad0c4);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Container styling */
+        .container {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+             position: relative;
+            overflow: hidden;
+        }
+
+        /* Heading style */
+        h1 {
+            color: #ff3c78;
+            margin-bottom: 30px;
+        }
+
+         /* GIF hidden initially */
+        .gif {
+            width: 200px;
+            height: auto;
+            margin: 20px 0;
+            display: none; /* hide GIF initially */
+        }
+
+        /* Buttons styling */
+        .buttons button {
+            padding: 15px 30px;
+            margin: 10px;
+            font-size: 18px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+             position: relative;
+        }
+
+        .yes-btn {
+            background-color: #ff3c78;
+            color: white;
+        }
+
+        .no-btn {
+            background-color: #ccc;
+            color: #333;
+        }
+
+        .buttons button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        /* Response message styling */
+        .response {
+            font-size: 22px;
+            font-weight: bold;
+            color: #ff3c78;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>💌 Will You Be My Valentine? 💌</h1>
+         <img id="yesGif" src="valentine.gif" alt="cute hearts" class="gif">
+
+        <div class="buttons">
+            <button id="yesBtn" class="yes-btn">Yes 💖</button>
+            <button id="noBtn" class="no-btn">No 😢</button>
+        </div>
+        <p id="response" class="response"></p>
+    </div>
+
+    <script>
+        const yesBtn = document.getElementById("yesBtn");
+        const noBtn = document.getElementById("noBtn");
+        const response = document.getElementById("response");
+        const yesGif = document.getElementById("yesGif");
+ const container = document.querySelector(".container");
+
+ 
+        yesBtn.addEventListener("click", () => {
+            response.textContent = "Yay! 💖 I'm so happy you said yes!";
+             yesGif.style.display = "block";
+        });
+
+        noBtn.addEventListener("click", () => {
+            response.textContent = "Sorry!You are dead😌";
+             yesGif.style.display = "none";
+        });
+
+         noBtn.addEventListener("mouseenter", () => {
+            const containerRect = container.getBoundingClientRect();
+            const btnRect = noBtn.getBoundingClientRect();
+
+            // Max random X/Y within container
+            const maxX = containerRect.width - btnRect.width;
+            const maxY = containerRect.height - btnRect.height;
+
+            // Random position within container
+            const randomX = Math.random() * maxX;
+            const randomY = Math.random() * maxY;
+
+            noBtn.style.position = "absolute";
+            noBtn.style.left = randomX + "px";
+            noBtn.style.top = randomY + "px";
+        });
+    </script>
+</body>
+</html>
